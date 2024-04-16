@@ -1,0 +1,164 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} User Profile {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+  <div class="content">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="title">Edit Profile</h5>
+          </div>
+
+          <div class="card-body">
+            <form>
+
+              {% if not current_user.email %}
+              <div class="row">
+
+                <div class="col-md-6 pr-md-1">
+
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <p class="mb-0">
+                        Please add an email address.
+                    </p>
+                  </div>
+
+                </div>
+      
+              </div>
+              {% endif %}
+
+              <div class="row">
+
+                <div class="col-md-6 pr-md-1">
+                  <div class="form-group">
+                    <label class="form-label {% if not current_user.email %} text-danger {% endif%}">Email Address</label>
+                    <input type="email" name="email" class="form-control"
+                    {% if current_user.email %} readonly {% endif %}
+                     placeholder="Your email Here"
+                     value="{% if current_user.email %} {{ current_user.email }} {% endif %}">
+                     <section class="display-error-message">
+                    </section>
+                  </div>
+                </div>
+                
+                <div class="col-md-6 pr-md-1">
+                  <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" class="form-control" value="{{current_user.username}}"  readonly>
+                  </div>
+                </div>
+                
+              </div>
+              <div class="row">
+                <div class="col-md-6 pr-md-1">
+                  <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" placeholder="Company" value="Mike">
+                  </div>
+                </div>
+                <div class="col-md-6 pl-md-1">
+                  <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" class="form-control" placeholder="Home Address" value="zamboanga">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4 pr-md-1">
+                  <div class="form-group">
+                    <label>City</label>
+                    <input type="text" class="form-control" placeholder="City" value="Mike">
+                  </div>
+                </div>
+                <div class="col-md-4 px-md-1">
+                  <div class="form-group">
+                    <label>Country</label>
+                    <input type="text" class="form-control" placeholder="Country" value="Andrew">
+                  </div>
+                </div>
+                <div class="col-md-4 pl-md-1">
+                  <div class="form-group">
+                    <label>Postal Code</label>
+                    <input type="number" class="form-control" placeholder="ZIP Code">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label>About Me</label>
+                    <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike"></textarea>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-fill btn-primary">Save</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Get the form element
+    const form = document.querySelector('form');
+
+    // Add an event listener for form submission
+    form.addEventListener('submit', function(event) {
+      // Prevent the default form submission behavior
+      event.preventDefault();
+
+      // Serialize form data into JSON format
+      const formData = {};
+      const formInputs = form.querySelectorAll('input, textarea');
+      formInputs.forEach(input => {
+        formData[input.name] = input.value;
+      });
+
+      // Send form data to the Flask route using fetch API
+      fetch('/save-profile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Handle response from the server
+        if (data.success) {
+          alert('Profile saved successfully!');
+        } else {
+          alert('Error saving profile. Please try again.');
+        }
+      })
+      .catch(error => {
+        console.error('Error saving profile:', error);
+        alert('An error occurred while saving your profile.');
+      });
+    });
+  });
+</script>
+{% block javascripts %}{% endblock javascripts %}

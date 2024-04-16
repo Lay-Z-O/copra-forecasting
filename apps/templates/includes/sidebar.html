@@ -1,0 +1,48 @@
+
+    <div class="sidebar">
+        <!--
+          Tip 1: You can change t12 color of the sidebar using: data-color="blue | green | orange | red"
+      -->
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="javascript:void(0)" class="logo-mini">
+                    <img src="{{ config.ASSETS_ROOT }}/img/copra-logo.png" alt="logo">
+                </a>
+                <a href="javascript:void(0)" class="simple-text logo-normal">
+                   COCO
+                </a>
+            </div>
+            <ul class="nav">
+                <li class="{% if 'index' in segment %} active {% endif %} ">
+                    <a href="/">
+                        <i class="tim-icons icon-chart-pie-36"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="{% if 'tables' in segment %} active {% endif %}">
+                    <a href="/forecast.html">
+                        <i class="tim-icons icon-puzzle-10"></i>
+                        <p>Forecast</p>
+                    </a>
+                </li>
+                <li class="{% if 'user' in segment %} active {% endif %}">
+                    <a href="/user.html">
+                        <i class="tim-icons icon-single-02"></i>
+                        <p>User Profile</p>
+                    </a>
+                </li>
+                <li class="{% if 'map' in segment %} active {% endif %}">
+                    <a href="/weather.html">
+                        <i class="tim-icons icon-pin"></i>
+                        <p>Weather</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('authentication_blueprint.logout') }}">
+                        <i class="tim-icons icon-button-power"></i>
+                        <p>Logout</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>

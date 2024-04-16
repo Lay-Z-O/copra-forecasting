@@ -1,0 +1,104 @@
+<!-- templates/home/result.html -->
+{% extends "layouts/base.html" %}
+
+{% block title %} Prediction Result {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+    <!-- Add any specific stylesheets for the result page if needed -->
+    <style>
+        /* Custom styles for the result page */
+        .system-info {
+            margin-bottom: 30px;
+            text-align: center; /* Center-align the content */
+        }
+        .system-info h5 {
+            margin-bottom: 20px;
+            font-size: 24px; /* Increase font size for headings */
+            color: #3498db; /* Blue color for headings */
+        }
+        .system-info p {
+            font-size: 18px; /* Increase font size for paragraphs */
+            color: #555; /* Dark gray color for paragraphs */
+        }
+        .system-info img {
+            width: 150px; /* Set width for logos */
+            margin-bottom: 20px;
+        }
+        .card {
+            border: 2px solid #3498db; /* Add border around the card */
+            border-radius: 10px; /* Add border radius to card */
+        }
+        .card-header {
+            background-color: #3498db; /* Blue background color for card header */
+            color: white; /* White text color for card header */
+            border-bottom: none; /* Remove border from card header */
+            border-top-left-radius: 10px; /* Add border radius to top-left corner */
+            border-top-right-radius: 10px; /* Add border radius to top-right corner */
+        }
+        .card-body {
+            padding: 30px; /* Add padding to card body */
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">System Overview</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="system-info">
+                            <img src="https://c8.alamy.com/comp/2D6FW17/machine-learning-logo-design-vector-illustrations-brain-ai-technology-human-template-2D6FW17.jpg" alt="Machine Learning Logo">
+                            <h5>What is This System?</h5>
+                            <p>
+                                Welcome to our prediction system! This system is designed to provide predictions for COPRA PRICE based on historical data and advanced machine learning techniques.
+                            </p>
+                        </div>
+                        <div class="system-info">
+                            <h5>How Does It Work?</h5>
+                            <p>
+                                The system uses historical data of COPRA PRICE and employs a powerful machine learning model called Random Forest Time Series Model to analyze patterns and make predictions.
+                            </p>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB7afn5xkmKuX1sP0tAfVQ98lDPC3cd1Gvmg&usqp=CAU" alt="Random Forest Logo">
+                            <p>
+                                Random Forest is an ensemble learning method used for classification and regression tasks. It works by constructing multiple decision trees during training and outputting the mode of the classes (classification) or the mean prediction (regression) of the individual trees.
+                            </p>
+                        </div>
+                        <div class="system-info">
+                            <h5>What Can You Expect?</h5>
+                            <p>
+                                Once you initiate a prediction request, the system processes the data and generates predictions for COPRA PRICE, providing you with valuable insights into future price trends.
+                            </p>
+                        </div>
+                        <div class="system-info">
+                            <h5>How to Use It?</h5>
+                            <p>
+                                To get started, simply input the necessary parameters and submit the prediction request. You'll then receive the predicted COPRA PRICE along with relevant information about the prediction process.
+                            </p>
+                        </div>
+                        <div class="system-info">
+                            <h5>Explore and Enjoy!</h5>
+                            <p>
+                                Feel free to explore the system and analyze the prediction results. We hope this tool proves to be insightful and valuable for your needs.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+    <!-- Add any specific JavaScript for the result page if needed -->
+    <script>
+        // Add JavaScript code here if necessary
+    </script>
+{% endblock javascripts %}
