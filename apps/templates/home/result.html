@@ -1,0 +1,56 @@
+<!-- templates/result.html -->
+
+{% extends "layouts/base.html" %}
+
+{% block title %} Time Series Prediction Result {% endblock title %}
+
+{% block content %}
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card mt-5">
+          <div class="card-header">
+            <h4 class="card-title">Time Series Prediction Result</h4>
+          </div>
+          <div class="card-body">
+            <div class="container-1">
+              <h1 class="mt-4">Prediction Result</h1>
+
+              {% if prediction_classification or prediction_regression %}
+                {% if prediction_classification %}
+                  <p id="classification_prediction">
+                    <strong>Harvest Season Prediction:</strong> {{ prediction_classification }}
+                  </p>
+                {% endif %}
+
+                {% if prediction_regression %}
+                  <p id="regression_prediction">
+                    <strong>Price Prediction (PHP per kg):</strong> {{ prediction_regression }}
+                  </p>
+                {% endif %}
+              {% else %}
+                <p>No predictions available.</p>
+              {% endif %}
+
+              {% if weather %}
+                <h5>Weather Forecast:</h5>
+                <p class="lead">Temperature: {{ weather.temperature }}°C</p>
+                <p class="lead">Description: {{ weather.description }}</p>
+                <!-- Add more weather information as needed -->
+              {% endif %}
+
+              <a href="/" class="btn btn-primary mt-3">Back to Forecast</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
+
+{% block javascripts %}
+  <!-- Include Bootstrap libraries -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+{% endblock javascripts %}
